@@ -1,27 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+        MiLista miLista = new MiLista();
+        // Escenario 1: Insertar "Hola" en la lista vacía
+        System.out.println("--- Escenario 1: Lista vacía ---");
+        miLista.add("Hola");
+        System.out.println("Cabeza actual: " + miLista.getHead()); // Imprime: Hola
 
-void main() {
-    MiLista miLista = new MiLista();
-    System.out.println(miLista.toString());
+        // Escenario 2: Preparamos la lista con "Buenos" y "Días"
+        miLista.add("Buenos");
+        miLista.add("Días");
 
-    miLista.insertHead(0);
+        System.out.println("--- Lista inicial ---");
+        imprimirLista(miLista);
 
-//    System.out.println(miLista.toString());
-    miLista.insertHead("Juan");
-    miLista.insertHead(true);
+        // Añadimos el nodo "Hola" al final de esa lista existente
+        System.out.println("\n--- Añadiendo 'Hola' ---");
+        miLista.add("Hola");
 
-//    System.out.println(miLista.toString());
+        System.out.println("--- Lista resultante ---");
+        imprimirLista(miLista);
+    }
 
-    miLista.insertTail("Angela");
-
-    System.out.println(miLista.toString());
-    System.out.println(miLista.getSize());
-
-    miLista.clear();
-
-    System.out.println(miLista.toString());
-
-    miLista.insertTail(5);
-    System.out.println(miLista.toString());
-    miLista.getSize();
-    System.out.println(miLista.getSize());
+    // Método auxiliar sencillo para ver la lista en consola
+    private static void imprimirLista(MiLista lista) {
+        ListNode iterador = lista.cabeza;
+        while (iterador != null) {
+            System.out.println("- " + iterador.dato); // O iterador.data / valor
+            iterador = iterador.siguiente;
+        }
+    }
 }

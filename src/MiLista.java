@@ -5,11 +5,14 @@ public class MiLista implements ListInterface{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.cabeza == null;
     }
 
     @Override
     public int getSize() {
+        if (this.cabeza == null) {
+            return 0;
+        }
         ListNode iterador = this.cabeza;
         int contador = 1;
         while (iterador.siguiente != null){
@@ -22,32 +25,71 @@ public class MiLista implements ListInterface{
     @Override
     public void clear() {
         this.cabeza = null;
-
     }
 
     @Override
     public Object getHead() {
-        return null;
+        if (this.cabeza == null) {
+            return null;
+        }
+        return this.cabeza.dato;
     }
 
     @Override
     public Object getTail() {
-        return null;
+        if (this.cabeza == null) {
+            return null;
+        }
+        ListNode iterador = this.cabeza;
+        while (iterador.siguiente != null) {
+            iterador = iterador.siguiente;
+        }
+        return iterador.dato;
     }
 
     @Override
     public Object get(ListNode node) {
+        if (node == null || this.cabeza == null) {
+            return null;
+        }
+        ListNode iterador = this.cabeza;
+        while (iterador != null) {
+            if (iterador == node) {
+                return iterador.dato;
+            }
+            iterador = iterador.siguiente;
+        }
         return null;
     }
 
     @Override
     public Object search(Object object) {
+        if (object == null || this.cabeza == null) {
+            return null;
+        }
+        ListNode iterador = this.cabeza;
+        while (iterador != null) {
+            if (object.equals(iterador.dato)) {
+                return iterador.dato;
+            }
+            iterador = iterador.siguiente;
+        }
         return null;
     }
 
     @Override
     public boolean add(Object object) {
-        return false;
+        ListNode nuevoNode = new ListNode(object);
+        if (this.cabeza == null) {
+            this.cabeza = nuevoNode;
+            return true;
+        }
+        ListNode iterador = this.cabeza;
+        while (iterador.siguiente != null) {
+            iterador = iterador.siguiente;
+        }
+        iterador.siguiente = nuevoNode;
+        return true;
     }
 
     @Override
